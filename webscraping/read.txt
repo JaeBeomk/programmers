@@ -1,0 +1,13 @@
+1. 필수 - 패키지 설치
+pip install beautifulsoup4 lxml requests
+
+2. 국제 규정을 어기지 않기위해 robots.txt 이용하기
+예를들어 네이버 www.naver.com/robots.txt
+
+3. 기본 코드의 프레임 = 데이터 추출/ 데이터 담기
+requests 와 beautifulsoup4 라이브러리 모듈은 html 문서를 가져와
+lxml로 파싱해 soup 객체롤 만듬
+
+4. 객체를 가져와서 만들고 싶었는데... 안만들어지네?
+- 요소를 정확하게 가져오지 못하는듯 싶다
+- JavaScript 공부를 해야하나...
