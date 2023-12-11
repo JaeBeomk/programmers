@@ -1,0 +1,52 @@
+프로젝트 생성 및 앱 생성
+django-admin startproject todoapp
+python manage.py startapp todo
+
+앱을 추가했기에 setting.py에 INSTALLED_APPS에 todo 추가
+todo의 모델은 # django는 pk값 설정을 안해도 된다.
+제목 = title(chr)
+설명 = description(chr) 
+생성일 = create_day(date)
+완료 = completed(bool)
+중요 = important(bool)
+
+todo/models.py 에 객체를 만들고 migration진행
+python manage.py makemigrations
+python manage.py migrate
+
+관리자 페이지 설정
+todo/admin.py # Todo 모델 등록
+todoapp/url # url접속 설정
+
+관리자 계정생성
+python manage.py createsuperuser
+root 계정으로 생성 비번(root)
+
+서버 실행
+python manage.py runserver
+http://127.0.0.1:8000 URL이 공개가되는데 /admin을 붙혀 관리자 페이지로 접근
+성공적 접근시 "GET /admin/ HTTP/1.1" 200 
+200 code 발생
+
+HTML 생성
+templates/todo 폴더를 만들고 todo_list.html파일을 만들어준다.
+
+model을 만들고 이제 보여줘야하니 view를 설정하자
+todo/view.py 수정
+
+todo/urls.py 생성 
+todoapp/urls.py 로 돌아가 url추가 해줘야 정상접근 가능
+
+todo 목록을 생성하는 화면을 구성하기전에 생성로직을 설계
+todo/forms.py
+
+수정화면 만들기는 대충..
+todo_post.html
+
+생성 / 수정 로직 설계
+todo/views.py
+
+url연결
+
+todo작업 완료시 completed로 변경 로직생성
+
