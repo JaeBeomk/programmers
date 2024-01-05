@@ -25,5 +25,16 @@ set함수는 list의 중복을 제거한 집합을 만들어 연산에 사용된
 배열을 나선형으로 집어넣으려니.... 마땅한 방법이 떠오르지는 않고 이차원 배열을 돌리는게 정답이라니... 참... 게시판이나 만들어야지...ㅎㅎㅎ
 2023.12.20-21
 django page 보이기 성공
-https://wikidocs.net/91420
+
+2024.01.05 회사 github연동 성공
+# DB migrate
+python manage.py makemigrations
+python manage.py migrate
+# superuser 생성
+python manage.py createsuperuser
+- username
+- email
+- password
+게시글 생성 후 blog.html 에 mvc가 잘 연결되었나 확인
+https://wikidocs.net/91423
 
