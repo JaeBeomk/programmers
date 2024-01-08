@@ -27,14 +27,20 @@ set함수는 list의 중복을 제거한 집합을 만들어 연산에 사용된
 django page 보이기 성공
 
 2024.01.05 회사 github연동 성공
-# DB migrate
+- DB migrate
 python manage.py makemigrations
 python manage.py migrate
-# superuser 생성
+- superuser 생성
 python manage.py createsuperuser
-- username
-- email
-- password
+username
+email
+password
 게시글 생성 후 blog.html 에 mvc가 잘 연결되었나 확인
-https://wikidocs.net/91423
+
+2024.01.08
+확인은 아직도 안했지만... posting_page 추가해서 pk값으로 post가져와서 보여주기 및 문제 몇개 해결 + kube yaml 생성
+
+크롤링 해보기
+image 추가하기
+https://wikidocs.net/91424
 

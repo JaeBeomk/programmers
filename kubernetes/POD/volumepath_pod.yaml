@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  labels:
+    name: webapp
+spec:
+  containers:
+  - name: webapp
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  # volume과 volumeMounts는 name을 맞춰줘야한다.
+  volumeMounts:
+    - name:  log-volume
+      mountPath:  /log
+  volumes:
+    - name:  log-volume
+    # pvc 연동시 하위 부분 삭제
+      # hostPath:
+      #   path:  /var/log/webapp
+      #   type: Directory
+      persistentVolumeClaim:
+        claimName: claim-log-1

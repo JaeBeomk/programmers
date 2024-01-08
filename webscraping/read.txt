@@ -1,3 +1,6 @@
+웹 크롤링 = URL을 반복 탐색해 링크 가져오기
+웹 스크래핑 특정 웹페이지에서 데이터 추출 
+
 1. 필수 - 패키지 설치
 pip install beautifulsoup4 lxml requests
 

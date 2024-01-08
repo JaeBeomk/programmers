@@ -1,0 +1,77 @@
+## .bashrc에 kubectl -> k 로 변경 설정
+alias k='kubectl'
+설정 후 source ~/.bashrc
+
+# pod 생성
+k run [pods] --image=[image]
+
+이벤트조회
+	- 용량 이슈로 인해 default로 1시간만 events 로그를 유지
+	- 모든 네임스페이스 에서 시간순으로 정령해 events 조회
+$ kubectl get events --sort-by='.metadata.creationTimestamp' -A
+	- -grep -v [검색어]옵션을 같이 사용하면 특정 검색
+
+POD 재기동
+$ Kubectl delete pod [pod명]
+
+전체 POD 조회시 AGE로 정렬
+$ kubectl get po -A --sort-by=.metadata.creationTimestamp
+
+노드정보 조회
+$ kubectl describe no
+
+노드 Request/Limit CPU/Memory 할당량 조회
+$ kubectl describe no | grep Allocated -A5
+	- 여기서 A5는 After 5 line
+
+노드 실제 사용률
+$ kubectl top node
+$ oc adm top node
+
+## openshift 프로젝트(namespace) 조회
+$ oc get project
+$ oc get pods -n [project명]
+
+Pod 로그 저장
+$oc logs [Pods명] -n [ns명] > Pod명.log
+
+Pod 로그 tail로 하위 100줄 보기
+$ oc logs [pod] -n [ns] --tail 100 --follow
+	- 여기서 follow는 실시간 로그도 같이 표시
+Pod 안의 컨테이너가 다수일 경우 , 택 1 해주어야한다.
+	- oc logs [pod] -c [container] -n [ns] --tail --follow
+		○ --follow = -f 로 사용가능
+
+Pod CPU/MEM 사용률 확인
+$ oc adm top pod [pod] --containers -n [ns]
+$ kubectl top pod [pod] --containers -n [ns]
+
+특정 네임스페이스에 존재하는 모든 Pod자원 사용률 확인
+$ oc adm top pod --containers -n [ns]
+
+Deployment 롤링 재기동
+$oc rollout restart deploy [deployment] -n [ns]
+$kubectl rollout restart deploy [deployment] -n [ns]
+
+클러스터 명 확인
+$ kubectl config view --minify -o jsonpath='{.cluster[].name}'
+
+Deployment Scale 변경(명령어)
+$ kubectl scale deploy [deployment] -n [ns] --replicas=[]
+$ oc scale deploy [deployment] -n [ns] --replicas=[]
+
+Deployment Scale 변경(vi)
+$ kubectl edit deploy [deployment] -n [ns]
+$ oc edit deploy [deployment] -n [ns]
+	- edit 접속 후 /replicas
+
+DaemonSet DOWN
+$ kubectl -n [ns] patch daemonset [daemonset] -p '{"spec": {"template": {"nodeSlector": {"non-existing": "true"}}}}}'
+
+DaemonSet StartUP
+$ kubectl -n [ns] patch daemonset [daemonset] --type json -p '[{"op": "remove","path": "/spec/template/spec/nodeSelector/non-existing"}]'
+
+hpa 증설
+$ k patch hpa -n [ns] [deploy] -p '{"spec": {"minReplicas": 10,"maxReplicas": 14}}'
+$ oc patch hpa -n [ns] [deploy] -p '{"spec": {"minReplicas": 5}}'
+

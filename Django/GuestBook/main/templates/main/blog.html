@@ -16,7 +16,8 @@
         {% endcomment %}
         {% for list in post_list %}
             <ul>
-                <li>{{list.postname}}</li>
+                {% comment %} 게시글 클릭시 이동 링크 {% endcomment %}
+                <li><a href="{{list.pk}}/">{{list.postname}}</a></li>
                 <li>{{list.contents}}</li>
             </ul>
         {% endfor %}
