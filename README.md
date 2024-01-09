@@ -40,6 +40,8 @@ password
 2024.01.08
 확인은 아직도 안했지만... posting_page 추가해서 pk값으로 post가져와서 보여주기 및 문제 몇개 해결 + kube yaml 생성
 
+2024.01.09
+algorithm 약간 조금 품...
 크롤링 해보기
 image 추가하기
 https://wikidocs.net/91424
