@@ -1,8 +1,7 @@
 from django.urls import path
-from django.contrib import path
+from django.contrib import admin
+from main.views import index ,blog ,posting
 
-from . import views
-from .views import *
 # 이미지 업로드
 from django.conf.urls.static import static
 from django.conf import settings
@@ -10,8 +9,8 @@ from django.conf import settings
 app_name='main'
 
 urlpatterns = [
-    path('admin/',admin.site.urls),
-    path('', views.index, name='index'),
+    path('admin/', admin.site.urls),
+    path('', index, name='index'),
     
     path('blog/',blog, name='blog'),
     

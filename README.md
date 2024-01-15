@@ -49,6 +49,8 @@ pip install pillow
 python manage.py makemigration
 python manage.py migrate
 python manage.py runserver
+완료(작업트리는 뭐야)
+161989.py 다시해보기
 
 https://wikidocs.net/91438
 크롤링 해보기

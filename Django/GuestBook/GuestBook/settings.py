@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -124,5 +125,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 사진이 저장될 공간 설정
+# NameError: name 'os' is not defined. Did you forget to import 'os'? 에러가 나오는데
+# 여기서 os는 파일의 이름을 넣었을 때 그 파일의 절대경로를 불러옴 import os 해주면 해결
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
