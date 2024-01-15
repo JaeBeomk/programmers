@@ -9,6 +9,10 @@ class Post(models.Model):
     # DB migrate 필요!
     # python manage.py makemigrations
     # python manage.py migrate
+    mainphoto=models.ImageField(blank=True,null=True)
+    # 게시글 Post에 이미지 추가
+    # 모델 수정 후 사진 처리 라이브러리 Pillow 설치
+
 
     # 게시글의 제목이 Post Object 대신하기
     def __str__(self):

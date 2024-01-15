@@ -42,7 +42,13 @@ password
 
 2024.01.09
 algorithm 약간 조금 품...
-크롤링 해보기
-image 추가하기
-https://wikidocs.net/91424
 
+2024.01.12-15
+image 설정
+pip install pillow
+python manage.py makemigration
+python manage.py migrate
+python manage.py runserver
+
+https://wikidocs.net/91438
+크롤링 해보기

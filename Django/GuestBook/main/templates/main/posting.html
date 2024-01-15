@@ -9,6 +9,10 @@
         <h1>게시글 개별 페이지</h1>
         <p>{{post.postname}}</p>
         <p>{{post.contents}}</p>
+        {% if post.mainphoto %}
+            <img src ="{{ post.mainphoto.url }}" alt="" height="600">
+            <br>
+        {% end if %}
         <a href="/blog/">목록</a>
     </body>
 </html>
