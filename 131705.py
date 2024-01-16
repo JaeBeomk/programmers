@@ -6,20 +6,30 @@
 
 def solution(number):
     answer = 0
-    ans=[]
+    wer=[]
+    
     for i in number: # 일단 반복문으로 [0]번 인덱스를 가져와 얘로 만들어보자
         for j in range(1,len(number)): # [1]번 인덱스를 가져오자
             for k in range(2,len(number)): # [2]번 값을 가져오자
-                if i+number[j]+number[k]==0 and not i==number[j]==number[k]==0:
+                if i+number[j]+number[k]==0 and not i==number[j]==number[k]==0: # 3개 더했을때 0 같은 index면 안돼
                     # print(i,number[j],number[k]) # 결과물
-                    ans.insert(i,number[j],number[k])
-                    print(ans)
-                    # 집가서 다시
-                    answer+=1
-
+                    ans=[i,number[j],number[k]]
+                    # print(ans)# 정렬하기 위해 list에 담아 sort 튜플은 sort가 안돼
+                    ans.sort()
+                    wer.append(ans)
+                    ans=()
+    # 정렬된 배열 확인
+    # print(wer)
+    # wer 반복해서 중복 제거
+    result=[] # 중복제거한 배열담고 count
+    for i in wer:
+        if i not in result:
+            result.append(i)
+            answer+=1 
+    print(result)
     return answer
 
 
-print(solution([-2, 3, 0, 2, -5]))#2 (-2,2,0)(3,2,-5)
-# print(solution([-3, -2, -1, 0, 1, 2, 3])) #5 (-3,0,3),(-2,0,2),(-1,0,1),(-2,-1,3),(-3,1,2) 
+# print(solution([-2, 3, 0, 2, -5]))#2 (-2,2,0)(3,2,-5)
+print(solution([-3, -2, -1, 0, 1, 2, 3])) #5 (-3,0,3),(-2,0,2),(-1,0,1),(-2,-1,3),(-3,1,2) 
 # print(solution([-1, 1, -1, 1])) #0
