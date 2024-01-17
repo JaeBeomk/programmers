@@ -53,7 +53,11 @@ python manage.py makemigration
 python manage.py migrate
 python manage.py runserver
 완료(작업트리는 뭐야)
-161989.py 다시해보기
+
+2024.01.16-17
+계산기를 한번 만들어봤는데 popup을 이용한 tkinter 라이브러리는 참신한것같다. 
+이걸 활용해서 뭔가 더 만들어 볼수 있겠다
+
 
 https://wikidocs.net/91438
 크롤링 해보기
