@@ -58,6 +58,9 @@ python manage.py runserver
 계산기를 한번 만들어봤는데 popup을 이용한 tkinter 라이브러리는 참신한것같다. 
 이걸 활용해서 뭔가 더 만들어 볼수 있겠다
 
+2024.01.23
+n의 제곱근은 sqrt= n**(1/2) 으로 구할수있었다....
+sorted와 reversed함수는 리스트만 가능
 
 https://wikidocs.net/91438
 크롤링 해보기
