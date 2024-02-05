@@ -62,5 +62,9 @@ python manage.py runserver
 n의 제곱근은 sqrt= n**(1/2) 으로 구할수있었다....
 sorted와 reversed함수는 리스트만 가능
 
+2024.02.05 
+list의 각 요소 형변환
+{담을것}=list(map(int,{리스트}))
+
 https://wikidocs.net/91438
 크롤링 해보기
