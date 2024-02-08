@@ -8,6 +8,12 @@
             "type": "java",
             "name": "App",
             "request": "launch",
+            "mainClass": "App"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
             "mainClass": "App",
             "projectName": "programmers_104c8b35"
         },

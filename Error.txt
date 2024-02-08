@@ -1,0 +1,9 @@
+1.회사 프록시/방화벽에서 사이트 트래픽을 허용치 않으면 pip 설치시 해당 에러 발생
+Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)'))': /packages/8a/6a/19e9fe04fca059ccf770861c7d5721ab4c2aebc539889e97c7977528a53b/pip-24.0-py3-none-any.whl.metadata
+
+해결방안
+1) --trusted-host pypi.org --trusted-host files.pythonhosted.org 옵션 추가하여 설치하기
+ex) pip install django --trusted-host pypi.org --trusted-host files.pythonhosted.org
+
+2) 매번 입력이 귀찮을시 config 파일 생성
+ex) pip config set global.trusted-host "pypi.org files.pythonhosted.org"
