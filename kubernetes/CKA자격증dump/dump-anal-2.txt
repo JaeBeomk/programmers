@@ -1,0 +1,195 @@
+11> PV / hostpath
+Q.  Creae a persistent volume with name app-data of capacity 2Gi and access mode ReadWriteMany 
+    The type of volume is hostPath and its location is /srv/app-data
+A.
+	1. pv 생성
+--------
+apiVersion: v1
+kind: PersistentVolume 
+metadata:
+  name: app-data 
+spec:
+  capacity: 
+    storage: 2Gi
+  volumeMode: Filesystem 
+  accessModes:
+    - ReadOnlyMany 
+  hostPath:
+    path: "/srv/app-data"
+	
+	2. 확인
+    → k get pv
+
+12> Log Extract
+
+Q.  Monitor the logs of pod foo and:
+    * Extract log lines corrsponding to error file-not-found
+    * Write them to /opt/KUTR00101/foo
+
+A.
+    1.	로그 필터링 명령어
+	→ k logs foo | grep “file-not-found” > /opt/KUTR00101/foo
+	2.	확인
+	→ cat /opt/KUTR00101/foo
+	
+13> SideCar
+Q.  An existing Pod needs to be integrated into Kubernetes’s built-in logging architecture(e.g. kubectl logs). 
+    Adding a streaming sidecar container is a good and common way to accomplish this requirement._
+
+    Add a sidecar container named sidecar, using the busybox image, to the existing Pod big-corp-app.
+	The new sidecar container has to run the following command:
+	/bin/sh -c "tail -n+1 -f /var/log/big-corp-app.log"
+
+    Use a volume, mounted at /var/log, to make the log file big-corp-app.log available to the sidecar container.
+    * Don’t modify the specification of the existing container other than adding the mounted volume mount.
+   
+A.     
+    1. 기존의 파드 big-corp-app을 yaml 파일로 추출
+    → k get pod big-corp-app -o yaml > big-corp-app.yaml
+    2. yaml파일 수정
+    → sudo vim big-corp-app.yaml
+------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: big-corp-app
+spec:
+  containers:
+  - name: count
+    image: busybox
+    args:
+    - /bin/sh
+    - -c
+    - >
+      i=0;
+      while true;
+      do
+        echo "$(date) INFO $i" >> /var/log/legacy-ap.log;
+        i=$((i+1));
+        sleep 1;
+      done
+    volumeMounts:
+    - name: logs
+      mountPath: /var/log
+  - name: count-log-1
+    image: busybox
+    args: [/bin/sh, -c, 'tail -n+1 -f /var/log/big-corp-app.log']
+    volumeMounts:
+    - name: logs
+      mountPath: /var/log
+  volumes:
+  - name: logs
+    emptyDir: {}
+	
+    3.	기존 pod 삭제
+    → k delete pod big-corp-app
+    4.	신규 파드 생성
+    → k create -f big-corp-app.yaml
+    5.	체크
+	→ 문제에서 /var/log 경로의 볼륨을 사용하라고했는데 반드시 볼륨부분이 추가되어있는지도 확인 필요
+	volumes:
+	name: logs
+	emptyDir: {}
+
+14> High CPU POD
+Q.  From the pod label name=overloadcpu, find pods running high CPU workloads and
+    write the name of the pod consuming most CPU to the file /opt/KUT00401/KUT00401.txt (which already exists).
+	
+A.
+    1.	k top pods -l name=overloaded-cpu —sort-by=cpu 
+	    -->  사용률 1위 POD를  찾아서  아래 경로로 저장
+    2.	echo “overloaded-cpu-98b9se” > /opt/KUTR00401/KUTR00401.txt
+	또는
+	1.  kubectl top pod --sort-by=cpu -l name=overloaded-cpu |head -2 |tail -1 |cut-d' ' -f1 > /opt/KUTR00401/KUTR00401.txt
+	
+15> Node NotReady
+Q.  A Kubernetes worker node, named wk8s-node-0 is in state NotReady.
+    Investigate why this is the case, and perform any appropriate steps to bring the node to a Ready state, ensuring that any changes are made permanent.
+A.  
+    1. 워커노드 연결
+    → ssh wk8s-node-0
+    2. 노드상태 확인
+	→ k describe node wk8s-node-0 (상태보면 kubelet이 stop되었다고 나옴)
+	3. kubulet 서비스 상태 확인 및 재시작
+	→ sudo systemctl status kubelet
+	→ sudo systemctl restart kubelet
+	노드상태가 NotReady에서 Ready로 변경
+
+16> PVC
+Q.  Create a new PersistentVolumeClaim:
+	* Name: pv-volume_
+	* Class: csi-hostpath-sc_
+	* Capacity: 10Mi
+	Create a new Pod which mounts file the PersistentVolumeClaim as a volume:
+	* Name: web-server
+	* Image: nginx
+	* Mount path: /usr/share/nginx/html
+	Configure the new Pod to have ReadWriteOnce access on the volume. 
+	Finally, using kubectl edit or kubectl patch expand the PersistentVolumeClaim to a capacity 70Mi and record that change.
+	
+A. 
+    1. pv생성
+-----------
+apiVersion: v1
+kind: PersistentVolumeClaim 
+metadata:
+  name: pv-volume 
+spec:
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests: 
+	  storage: 10Mi
+storageClassName: csi-hostpath-sc
+
+	2. pod 생성
+--------------
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: web-server 
+spec:
+  containers:
+    -  name: web-server 
+	   image: nginx 
+	   volumeMounts:
+       - mountPath: "/usr/share/nginx/html"
+         name: my-volume // 이 이름을 아래 volume 이름이랑 일치
+  volumes:
+    -  name: my-volume // 위 이름이랑 일치
+       persistentVolumeClaim:
+         claimName: pv-volume // 생성한 pvc 이름이랑 일치
+		 
+    3. pvc 확장
+	→ k edit pvc pv-volume
+	→ 하단에 resources.requests.storage의 사이즈를 10Mi에서 70Mi로 수정하고 저장한다.
+
+17> Ingress
+Q.  Create a new nginx Ingress resource as follows:
+	* Name: pong
+	* Namespace: ing-internal
+	* Exposing service hello on path /hello using service port 5678
+	The availability of service hello can be checked using the following command, which should return hello:
+A.
+    1.	ingress 생성
+-------------------
+apiVersion: networking.k8s.io/v1 
+kind: Ingress
+metadata: 
+  name: pong
+  namespace: ing-internal 
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello 
+	    pathType: Prefix 
+		backend:
+          service: 
+		    name: hello 
+		  port:
+            number: 5678
+	
+	

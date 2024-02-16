@@ -1,0 +1,199 @@
+1>  ClusterRole / SA
+Q.  Create a new ClusterRole named deployment-clusterrole, which only allows to create the following resource types:
+    Deployment / Statefule Set / DaemonSet
+	Create new SerivceAccount named cicd-token in the existing namespace app-team1
+	Bind the new ClusterRole deployment-clusterrole to the new SerivceAccount cicd-token, limited to the namespace app-team1
+A.  
+    1. deployment-clusterrole 클러스터  롤  생성
+    → kubectl create clusterrole deployment-clusterrole --verb=create --resource=deployment,statefulset,daemonset 
+    2. app-team1 네임  스페이스에  서비스  계정  생성
+    → kubectl create sa cicd-token -n app-team1
+    3. 롤  바인딩  생성	
+	→ kubectl create rolebinding cluster-admin-binding --clusterrole=deployment-clusterrole --serviceaccount=app-team1:cicd-token -n app-team1 
+	   // 반드시 app-team1 네임스페이스에  롤바인딩을  구성해줘야함  (네임스페이스에 롤바인딩이므로   clusterrolebinding 이 아닌 rolebinding)
+    4. 작업  최종  확인
+	→ kubectl auth can-i create deployment -n app-team1 --as=system:serviceaccount:app-team1:cicd-token  (yes)
+	→ kubectl auth can-i create deployment -n default --as=system:serviceaccount:default:cicd-token (no)
+	
+2>  Drain / Cordon
+Q.  Set the node named ek8s-node-0 as unavailable and reschedule all the pods running on it	
+A.
+    1. 노드에  할당된  파드  드레인
+    → kubectl drain ek8s-node-0 —ignore-daemonsets —delete-emptydir-data // —delete-emptydir-data 옵션을  이걸  해야  에러가 나지  않음. (delete-local-data 같은 옵션)
+    2. 상태  확인
+    → kubectl get nodes (schedulingDisabled 확인)
+	
+3>  Cluster upgrade
+Q.  Given an existing Kubernetes cluster running version 1.22.1,  upgrade all of the kubernetes control plane and node components  on the master node only to version 1.22.2
+    Be sure to drain the master node before upgrading int and uncordong it after the upgrade
+A.  
+    1. 컨트롤  플레인  노드  드레인 (업그레이드  작업  전  반드시  수행  필요)
+    → k drain mk8s-master —ignore-daeomnsets 
+	→ k get nodes // SchedulingDisabled 상태 확인
+	2. 마스터  노드에 SSH 연결
+	→ ssh mk8s-master-0
+	3. apt 업데이트 
+	→ sudo -i 
+	→ apt update
+	→ apt-cache madison kubeadm // 업그레이드  가능한  패키지  목록  확인
+	4. kubadm / kubelet / kubectl 업그레이듸
+	→ apt install kubeadm=1.22.2-00 kubelet=1.22.2-00 kubectl=1.22.2-00
+	5. kubeadm upgrade plan
+	6. kubeadm upgrade apply v1.22.2
+	7. kubelet 재  시작
+	→ sudo systemctl restart kubelet
+	8. 노드에  파드를  다시  할당  가능하도록 uncordon 설정  실시
+	→ kubectl uncordon mk8s-master-0
+    
+4>  ETCD Backup & Restore
+Q.  First, create a snapshot of the existing etcd instance running at https://127.0.0.1:2379, saving the snapshot to /var/lib/backup/etcd-snapshot.db
+    Next, restore an existing previous snapshot located at /var/lib/backup/etcd-snapshot-previous.db
+A.  <Key 1.  snapshot restore 시  endpoints 기재  ,   Key 2.  snapshot restore 후  디렉토리 권한 ㅗ학인>
+    1. 백업  명령어
+	→ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/opt/KUIN00601/ca.crt --cert=/opt/KUIN00601/etcd-client.crt --key=/opt/KUIN00601/etcd-client.key snapshot save /var/lib/backup/etcd-snapshot.db
+	2. 리스토어  복구  명령어
+	→ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379  —data-dir /var/lib/backup2 snapshot restore /var/lib/backup/etcd-snapshot-previous.db
+	3. etcd가  떠있는  노드에서 /etc/kubernetes/manifest/etcd.yaml 경로  파일  수정
+	→ sudo vim /etc/kubernetes/manifest/etcd.yaml
+	→ 아래 volume부분에 hostPath 경로를  위  복구  명령어의  복구  위치로  잡아준다. 
+	volumes:
+	hostPath:
+	path: /etc/kubernetes/pki/etcd 
+	type: DirectoryOrCreate 
+	name: etcd-certs
+	hostPath:
+	path: /var/temp → 이  부분을 /var/lib/backup2 (복구할  위치)로  수정
+	type: DirectoryOrCreate 
+	name: etcd-data	
+
+5>  NetworkPolicy 
+Q.  Create a new NetworkPolicy named allow-port-from-namespace in the existing namespace fubar
+    Ensure that the new NetworkPolicy allows Pods in namespace internal to connect to port 9000 of Pods in namespace fubar
+	Further ensure that the new NetworkPolicy
+    * does not allow access to Pods, which don't listen on port 9000
+    * does not allow access from Pods, which are not in namespace internal
+A.  
+    1. label 생성 
+    → kubectl label ns internal project=my-app // 이렇게 기존 네임 스페이스에 커스텀 레이블을 추가하는 방법
+    2. networkpolicy.yaml 생성
+--------
+apiVersion: networking.k8s.io/v1 kind: NetworkPolicy
+metadata:
+  name: allow-port-from-namespace
+  namespace: fubar // 중요 네트워크폴리시는 fubar에다가 만들어야 함
+spec:
+  podSelector: {} 
+  policyTypes:
+  -	Ingress
+  ingress:
+  - from:
+    -  namespaceSelector: 
+	     matchLabels:
+		   project: my-app 
+    ports:
+    -  protocol: TCP
+       port: 9000 // 포트 9000
+	   
+    3.  NetworkPolicy 생성
+	-> k apply -f networkpolicy.yaml
+	
+6>  Service 
+Q.  Reconfigure the existing deployment front-end and add a port specification named http exposing port 80/tcp of the existing container nginx
+    Create a new service named front-end-svc exposing the container port http
+    Configure the new service to also expose the individual Pods via a NodePort on the nodes on which they are scheduled.
+A.  
+    1. Deployment 수정
+    → k edit deployment front-end
+    → template.spec 아래에 컨테이너 스펙 생성
+	spec:
+	  containers:	
+	  -	 image: nginx:1.14.2
+	     name: nginx
+		 ports: // 이부분 추가 port뒤에 's' 가 붙는거 매우 주의
+		 -  containerPort: 80 // 이부분 추가 * 주의사항 P가 대문자. 대 소문자 구분!! 
+		    name: http // 이부분 추가
+    2. 기존 서비스를 노출하는 expose 명령어
+    → k expose deployment front-end —name=front-end-svc —port=80 —type=NodePort —protocol=TCP
+    → 팁으로 deployment spec에다가 프로토콜과 포트와 이름을 설정 해 놓은 상황에서는 아래만 해도 된다고 함 —type과 —name만 주어 도 되는것 같음 (실제로 동작함)
+
+7>  Deployment Scale
+Q.  Scale the deployment presentation to 3 pods
+A.  
+    1.	디플로이먼트 스케일 설정
+	→ k scale deployment presentation —replicas=3
+	2.	확인
+	→ k get pods
+	→ k get deployments presentation
+	
+8>  Node Selector
+Q.  Schedule a pod as follow
+	* _Name: nginx-kusc00401
+	* _Image: nginx
+	* _Node selector: disk=ssd 
+A.
+    1.	파드 생성
+	→ k run nginx-kusc00401 —image=nginx —dry-run -o yaml >  sel.yaml
+	→ vi sel.yaml
+--------
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: nginx 
+spec:
+  containers:
+  - name: nginx 
+    image: nginx
+  nodeSelector: 
+    disk: ssd
+	
+	→ k apply -f sel.yaml
+	3. 확인
+	→ k get pod (running) 상태 확인
+	4. 팁
+	→ k get node —show-labels를 했을 때 반드시 노드에 disk=ssd라는 레이블이 존재 해야 함
+    → 만약에 노드에 레이블이 없다? 그럼 레이블을 주면 됨
+	→ k labels node node01 disk=ssd
+	→ 노드 셀렉터는 노드가 가진 레이블을 보고 파드가 노드를 결정하는 기능임을 유의
+
+9>  Taint Node
+Q.  Check to see how many nodes are ready (not including nodes tainted NoSchedule) and write the number to /opt/KUSC00402/kusc00402.txt.
+A.  
+    1.	정보 미리 확인
+	→ k get node
+	→ 노드 상태가 ready 상태인 애들만 확인해서 숫자를 해당 경로에 저장하라는 뜻으로 문제를 해석됨. 즉, node 상태가 taint가 걸려있으 면
+	3.	명령어 입력
+	→ kubectl describe nodes | grep "Taint" | grep -v "NoSchedule" | wc -l > /opt/KUSC00402/kusc00402.txt.
+	→ 위 wc -l은 Grep 결과의 행을 세는 옵션이므로 2개가 나옴
+	→ 다른 방법으로 echo “2” > /opt/KUSC00402/kusc00402.txt.
+	→ 문제는 쿠버네티스 채점 방식이 수동으로 보는 것 같은데 위 상태를 확인하는 절차 없이 바로 echo “2” > 저장 경로 이렇게 해버리면 점 수를 줄지 모르겠음.
+	→ 사실 결과는 똑같은데 문제풀이 전체 과정을 보는지 여부에 따라 점수를 줄지 말지 결정될 것
+
+10> multi container
+Q.  Schedule a Pod as follows:
+	✑ Name: kucc8
+	✑ App Containers: 2
+	✑ Container Name/Images: nginx , consul
+A.  
+	1.	yaml파일 샘플 생성
+	→ k run kucc8 —image=nginx —dry-run=client -o yaml > kucc8.yaml
+	2.	파일 수정
+	→ sudo vim kucc8.yaml
+-----------
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: kucc8
+spec:
+  containers:
+  -	name: nginx 
+    image: nginx
+  -	name: consul 
+    image: consul
+
+	→ k apply -f sel.yaml
+	3.	확인
+	→ k get pods 
+controlplane $ k get pod
+NAME	READY STATUS RESTARTS AGE
+kucc8	2/2	Running   0	7s
+	→ k describe pod kucc8
