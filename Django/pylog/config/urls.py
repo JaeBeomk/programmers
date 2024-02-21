@@ -16,12 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from config.views import main ,burger_list,burger_search
+# view 연결
+from config.views import index
+from blog.views import post_list
+# image 처리
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",main), # 공백주소로 main 연동
-    path("burgers/",burger_list), # burger_list 연동
-    path("search/",burger_search), # burger_search 연동
-    
+    path("",index),
+    path("posts/",post_list),
 ]
+
+# 정적 url pattern
+urlpatterns += static(
+    
+    # URL의 접두어가 MEDIA_URL일 때 정적파일 돌려줌
+    prefix=settings.MEDIA_URL,
+    # 돌려줄 dir는 MEDIA_ROOT를 기준
+    document_root=settings.MEDIA_ROOT,
+)

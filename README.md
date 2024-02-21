@@ -90,5 +90,10 @@ django 프로젝트에서 vc연동시 저장을 생활화 하자....ㅠ
 txt 파일 자동 줄바꿈 Alt+z
 sqlite3 / django 설치 사내망 테스트 완료
 
+2024.02.21
+django Template에서 변수를 출력하고자할때 {{변수}} 를 사용
+태그= {% %}
+django의 이미지 처리는 pillow 라이브러리 설치 필요
 
+142 detailpage 
 크롤링 해보기
