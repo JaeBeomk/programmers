@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "hello",
+            "request": "launch",
+            "mainClass": "chap01.hello",
+            "projectName": "programmers_104c8b35"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App"

@@ -95,5 +95,9 @@ django Template에서 변수를 출력하고자할때 {{변수}} 를 사용
 태그= {% %}
 django의 이미지 처리는 pillow 라이브러리 설치 필요
 
-142 detailpage 
+2024.03.03
+221부터
+
 크롤링 해보기
+쿠버네티스 구축 따라해 보기
+https://syhwang.tistory.com/43?category=1220695

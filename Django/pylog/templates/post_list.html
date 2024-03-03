@@ -7,6 +7,7 @@
 <body>
     <div id="navbar">
         <span>Pylog</span>
+        <a href="/posts/add/" class="btn btn-primary">글 작성</a>
     </div>
     <div id="post-list">
         <ul class="posts">
@@ -15,6 +16,9 @@
                     <div>{{post.title}}</div>      
                     <p>{{post.content}}</p>
                     <ul class="commnets">
+                        <div>
+                            <a href="/posts/{{post.id}}">{{post.title}}</a>
+                        </div>
                         {% for comment in post.comment_set.all %}
                             <li class="comment">{{commnet.contnet}}</li>
                         {%empty%}
