@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from . import models
+from django.shortcuts import render,redirect
+from forms import TodoForm
+from models import Todo
 
 # Create your views here.
 # todo/todo_list.html을 연결
@@ -39,7 +40,7 @@ def todo_edit(request, pk):
     return render(request, 'todo/todo_post.html', {'form': form})
 
 # 완료시 completed 상태로 변경 로직
-def todo_done(request,pk):
+def todo_done(request , pk):
     todo=Todo.objects.get(id=pk)
     todo.completed=True
     todo.save()
@@ -47,7 +48,7 @@ def todo_done(request,pk):
 
 def todo_done_list(request):
     dones= Todo.objects.filter(completed=True)
-    return render(request,'todo/todo_done_list.html',{'dones':done})
+    return render(request,'todo/todo_done_list.html',{'dones':dones})
 
     
      
