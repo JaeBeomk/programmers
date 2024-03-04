@@ -1,20 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <div id="login">
 
+    {% extends "base.html" %}
+    {% block content %} 
+    <div id="login">
         <form method="POST">
             <h1>Pystagram</h1>
-
             {% csrf_token %}
-            {% comment %} form.as_p는 아이디 비번 input을 자동 렌더링 해줌 {% endcomment %}
-            {{ form.as_p }} 
+            {{ form.as_p }}
             <button type="submit" class="btn btn-login">로그인</button>
+            <a href="/users/signup/">회원가입페이지이동</a>
         </form>
     </div>
-</body>
-</html>
+    {% endblock %}
