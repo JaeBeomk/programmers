@@ -1,5 +1,5 @@
-# programmers algorithm
-# someday practice algorithm for Python
+# programmers Study
+# someday practice algorithm for python
 list 배열의 합은 sum 함수로 합쳐진다. 
 for 반복문을 배열에서 사용시 range(len())는 길이만큼 in은 배열안의 인덱스를 반복이다 
 
@@ -99,6 +99,10 @@ django의 이미지 처리는 pillow 라이브러리 설치 필요
 admin페이지의 이미지 처리를 위해 설치
 pip install 'django-admin-thumbnails<0.3'
 
+2024.03.05
+배열의 중복요소 제거= set() 함수
+합집합은 s1 | s2
+교집합은 s1 & s2 or s1.intersection(s2)
 
 251
 크롤링 해보기

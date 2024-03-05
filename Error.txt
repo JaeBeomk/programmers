@@ -7,5 +7,10 @@ Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) a
     2) 매번 입력이 귀찮을시 config 파일 생성
     ex) pip config set global.trusted-host "pypi.org files.pythonhosted.org"
 
-2. 
+2. java.sql.SQLRecoverableException:IO오류 Connection reset by peer
+- DB 데이터 조회시 error 메세지 발생
+- DB 커넥션을 맺은 후 장시간 사용하지 않으면 커넥션 반환하는데 반환한 커넥션을 사용하려고 해서 에러
+- DB 커넥션 종료를 WAS에서 알지 못해 발생
+- 특정 시간 마다 커넥션이 유효한지 health check 쿼리 살려 DB 커넥션 유지
+
 
