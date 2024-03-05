@@ -96,8 +96,11 @@ django Template에서 변수를 출력하고자할때 {{변수}} 를 사용
 django의 이미지 처리는 pillow 라이브러리 설치 필요
 
 2024.03.03
-221부터
+admin페이지의 이미지 처리를 위해 설치
+pip install 'django-admin-thumbnails<0.3'
 
+
+251
 크롤링 해보기
 쿠버네티스 구축 따라해 보기
 https://syhwang.tistory.com/43?category=1220695
