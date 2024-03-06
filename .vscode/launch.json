@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "src.App",
+            "projectName": "programmers_525f1482"
+        },
+        {
+            "type": "java",
+            "name": "hello",
+            "request": "launch",
+            "mainClass": "chap01.hello",
+            "projectName": "chap01"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "Lv0.src.App",
+            "projectName": "programmers_525f1482"
+        },
+        {
+            "type": "java",
             "name": "hello",
             "request": "launch",
             "mainClass": "chap01.hello",

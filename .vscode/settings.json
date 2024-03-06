@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "algorithm/Java",
+        "algorithm",
+        "Java/Test/src",
+        "Java/Java"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}
