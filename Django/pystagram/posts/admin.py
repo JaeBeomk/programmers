@@ -2,10 +2,11 @@ from django.contrib import admin
 # from django.contrib.admin.widgets import AdminFileWidget
 # from django.db import models
 # from django.utils.safestring import mark_safe
-from posts.models import Post,PostImage,Comment
+from posts.models import Post,PostImage,Comment,HashTag
 # pip install 'django-admin-thumbnails<0.3' 명령어를 사용해 thumbnails 설치
 import admin_thumbnails
-# Register your models here.
+from django.db.models import ManyToManyField
+from django.forms import CheckboxSelectMultiple
 
 # FK 연결된 다른객체 확인 하려면 admin의 Inline사용
 class CommentInline(admin.TabularInline):
@@ -40,6 +41,10 @@ class PostAdmin(admin.ModelAdmin):
         CommentInline,
         PostImageInline,
     ]
+    formfield_overrides={
+        ManyToManyField:{"widget":CheckboxSelectMultiple},
+    }
+    
 
 @admin.register(PostImage)
 class PostImageAdmin(admin.ModelAdmin):
@@ -57,5 +62,8 @@ class CommentAdmin(admin.ModelAdmin):
         "content",
     ]
 
+@admin.register(HashTag)
+class HashTagAdmin(admin.ModelAdmin):
+    pass
 
 

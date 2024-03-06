@@ -104,7 +104,9 @@ pip install 'django-admin-thumbnails<0.3'
 합집합은 s1 | s2
 교집합은 s1 & s2 or s1.intersection(s2)
 
-251
+image 가 안보이는건 둘째고...css도 적용안됨?
+댓글 기능 동작 확인해보자
+
 크롤링 해보기
 쿠버네티스 구축 따라해 보기
 https://syhwang.tistory.com/43?category=1220695

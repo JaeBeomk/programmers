@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate,login,logout
 def login_view(request):
     # login 완료 상태시
     if request.user.is_authenticated:
-        return redirect("/posts/feeds/")
+        return redirect("posts:feeds")
     
     if request.method=="POST":
         # LoginForm인스턴스 사용
@@ -28,7 +28,7 @@ def login_view(request):
             if user:
                 # 로그인 처리 후 피드로 redirect
                 login(request,user)
-                return redirect("/posts/feeds/")
+                return redirect("posts:feeds")
             else:
                 # print("로그인 실패")
                 form.add_error(None,"입력한 ID의 해당 사용자가 없습니다.")
@@ -46,7 +46,7 @@ def login_view(request):
 # logout 로직 
 def logout_view(request):
     logout(request)
-    return redirect("/users/login/")
+    return redirect("users:login")
 
 def signup(request):
     if request.method == "POST":
@@ -57,7 +57,7 @@ def signup(request):
             # 회원가입에 관련한 내용을 모두 form에서 처리
             user= form.save()
             login(request,user)
-            return redirect("/posts/feeds/")
+            return redirect("posts:feeds")
     # 중복된 코드는 최적화
     else:
         form=SignupForm()
