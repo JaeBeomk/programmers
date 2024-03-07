@@ -104,8 +104,12 @@ pip install 'django-admin-thumbnails<0.3'
 합집합은 s1 | s2
 교집합은 s1 & s2 or s1.intersection(s2)
 
+2024.03.06
 image 가 안보이는건 둘째고...css도 적용안됨?
 댓글 기능 동작 확인해보자
+
+2024.03.07
+k8s ns deploy 입력해 해당 deploy 네임의 pod의 컨테이너별 resource %
 
 크롤링 해보기
 쿠버네티스 구축 따라해 보기
