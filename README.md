@@ -111,6 +111,10 @@ image 가 안보이는건 둘째고...css도 적용안됨?
 2024.03.07
 k8s ns deploy 입력해 해당 deploy 네임의 pod의 컨테이너별 resource %
 
+2024.03.08
+insert키만 누르면 뒤에 글자 수정됨
+
+
 크롤링 해보기
 쿠버네티스 구축 따라해 보기
 https://syhwang.tistory.com/43?category=1220695
