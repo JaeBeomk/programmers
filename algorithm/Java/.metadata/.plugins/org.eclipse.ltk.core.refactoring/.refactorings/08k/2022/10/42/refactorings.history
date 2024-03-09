@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;goods_insert_pro.jsp&apos; to &apos;mginsert&apos;&#x0D;&#x0A;- Original project: &apos;08k&apos;&#x0D;&#x0A;- Destination element: &apos;mginsert&apos;&#x0D;&#x0A;- Original element: &apos;goods_insert_pro.jsp&apos;" description="Copy file" element1="src/main/webapp/goods/goods_insert_pro.jsp" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1665586677579" target="/08k/src/main/webapp/mginsert" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:solo1" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:mysql8model1.1_javajsp45" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:JSP_miniGame" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:team2__1" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:team2 (1)" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:solo" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:homework_08_kjb" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:mysql8model1.5_javajsp45" serverId="Tomcat v10.0 Server at localhost"/>
+</modules>
