@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Solution",
+            "request": "launch",
+            "mainClass": "algorithm.Java.src.ATM.Solution",
+            "projectName": "programmers_104c8b35"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "src.App",

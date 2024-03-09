@@ -50,16 +50,17 @@ def logout_view(request):
 
 def signup(request):
     if request.method == "POST":
-        # print(request.POST)
-        # print(request.FILES)
-        form = SignupForm(data=request.POST,files=request.FILES)
+        print(request.POST)
+        print(request.FILES)
+        form = SignupForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             # 회원가입에 관련한 내용을 모두 form에서 처리
+            
             user= form.save()
             login(request,user)
             return redirect("posts:feeds")
     # 중복된 코드는 최적화
     else:
         form=SignupForm()
-    context={"form":form}
+    context={"form": form}
     return render(request,"users/signup.html",context)

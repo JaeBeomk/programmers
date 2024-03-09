@@ -19,8 +19,8 @@ class LoginForm(forms.Form):
 # 회원가입시 입력받는Form
 class SignupForm(forms.Form):
     username=forms.CharField()
-    password1=forms.CharField(widget=forms.PasswordInput)
-    password2=forms.CharField(widget=forms.PasswordInput)
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
     profile_image=forms.ImageField()
     short_description=forms.CharField()
     # 데이터 검증 (이름)
@@ -34,6 +34,7 @@ class SignupForm(forms.Form):
         password2=self.cleaned_data["password2"]
         if password1 != password2:
             self.add_error("password2","비밀번호와 확인값이 다릅니다.")
+    
     def save(self):
         username=self.cleaned_data["username"]
         password1=self.cleaned_data["password1"]
@@ -41,7 +42,7 @@ class SignupForm(forms.Form):
         short_description=self.cleaned_data["short_description"]
         user=User.objects.create_user(
             username=username,
-            password1=password1,
+            password=password1,
             profile_image=profile_image,
             short_description=short_description,
         )

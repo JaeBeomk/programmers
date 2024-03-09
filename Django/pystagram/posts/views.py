@@ -5,7 +5,7 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
 
-
+# 게시글 list
 def feeds(request):
     # request의 요청의 정보를 가져온다
     # user= request.user
@@ -54,6 +54,7 @@ def comment_add(request):
         url=reverse("posts:feeds") + f"#post-{comment.post.id}"
         return HttpResponseRedirect(url)
 
+# 댓글삭제
 @require_POST
 def comment_delete(request, comment_id):
     if request.method == "POST":
@@ -65,6 +66,7 @@ def comment_delete(request, comment_id):
         else:
             return HttpResponseForbidden("이 댓글을 삭제할 권한이 없습니다.")
             
+# 게시글 생성
 def post_add(request):
     if request.method=="POST":
         form = PostForm(request.POST)
@@ -92,6 +94,7 @@ def post_add(request):
     context={"form":form}
     return render(request,"posts/post_add.html",context)
 
+# tag
 def tags(request,tag_name):
     try:
         tag = HashTag.objects.get(name=tag_name)
@@ -104,3 +107,10 @@ def tags(request,tag_name):
         "posts":posts,
     }
     return render(request,'posts/tags.html',context)
+
+# 게시글 상세
+def post_detail(request, post_id):
+    post=Post.objects.get(id=post_id)
+    comment_form=CommentForm()
+    context={"post":post,"comment_form":comment_form,}
+    return render(request, "posts/post_detail.html",context)

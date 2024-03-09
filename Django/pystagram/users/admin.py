@@ -7,7 +7,7 @@ from users.models import User
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {"fields": ("username","password"),}),
+        (None, {"fields": ("username","password")}),
         ("개인정보", {"fields":("first_name","last_name","email")}),
         ("추가필드",{"fields":("profile_image","short_description")}),
         (
@@ -20,6 +20,6 @@ class CustomUserAdmin(UserAdmin):
                 )
             }
         ),
-        ("중요일정",{"fields":("last_login","date_jiuned")}),
+        ("중요일정",{"fields":("last_login","date_joined")}),
     )
     
