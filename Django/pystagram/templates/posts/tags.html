@@ -1,5 +1,5 @@
 
-{% extends "base.html" %}
+{% extends "base_nav.html" %}
 {% block content %}
 <nav>
     <h1>
@@ -18,7 +18,9 @@
         {% for post in posts %}
             {% if post.postimage_set.first and post.postimage_set.first.photo %}{% endif %}
                 <div class="post-grid">
-                    <img src=" {{ post.postimage_set.first.photo.url }} " alt="">
+                    <a href="{% url 'posts:post_detail' post_id=post.id %}">
+                        <img src=" {{ post.postimage_set.first.photo.url }} " alt="">
+                    </a>
                 </div>
         {% empty %}
             <p>검색된 게시물이 없습니다.</p>

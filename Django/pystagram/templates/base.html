@@ -1,13 +1,16 @@
-{% load static %}
-<!DOCTYPE html>
+{% comment %} {% load static %} {% endcomment %}
+{% extends '_base.html' %}
+{% comment %} <!DOCTYPE html>
 <html lang="ko">
 <head>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'splide/splide.css' %}">
     <script src="{% static 'splide/splide.js' %}"></script>
 </head>
-<body>
-    {% comment %} 공통부분 남기고 부분만 변경시 block 으로 {% endcomment %}
-    {% block content %} {% endblock %}
-</body>
-</html>
+<body> {% endcomment %}
+    {% block base_content %}
+        {% comment %} 공통부분 남기고 부분만 변경시 block 으로 {% endcomment %}
+        {% block content %} {% endblock %}
+    {% endblock  %}
+{% comment %} </body>
+</html> {% endcomment %}

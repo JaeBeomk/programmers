@@ -43,16 +43,23 @@ def comment_add(request):
 
         # DB에 Comment 객체 저장
         comment.save()
-
         # comment의 정보 확인
-        print(comment.id)
-        print(comment.content)
-        print(comment.user)
+        # print(comment.id)
+        # print(comment.content)
+        # print(comment.user)
+        
+        # URL로 next값을 전달 받았다면 댓글 작성 완료 후 전달받은 값으로 이동
+        if request.GET.get("next"):
+            url_next=request.GET.get("next")
+        
+        else:
+            url_next=reverse("posts:feeds")+ f"#post-{comment.post.id}"
+        return HttpResponseRedirect(url_next)        
         
         # 생성 완료 후에는 피드 페이지로 다시 이동
         # return HttpResponseRedirect(f"/posts/feeds/#post-{comment.post.id}")
-        url=reverse("posts:feeds") + f"#post-{comment.post.id}"
-        return HttpResponseRedirect(url)
+        # url=reverse("posts:feeds") + f"#post-{comment.post.id}"
+        # return HttpResponseRedirect(url)
 
 # 댓글삭제
 @require_POST
@@ -114,3 +121,18 @@ def post_detail(request, post_id):
     comment_form=CommentForm()
     context={"post":post,"comment_form":comment_form,}
     return render(request, "posts/post_detail.html",context)
+
+# 좋아요
+def post_like(request, post_id):
+    post=Post.objects.get(id=post_id)
+    user=request.user
+
+    # 사용자가 좋아요 누를 Post목록에 좋아요 버튼을 누를 Post가 존재시 삭제
+    if user.like_posts.filter(id=post.id).exists():
+        user.like_posts.remove(post)
+
+    else:
+        user.like_posts.add(post)
+
+    url_next=request.GET.get("next") or reverse("posts:feeds")+f"#post-{post.id}"
+    return HttpResponseRedirect(url_next)

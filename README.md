@@ -115,7 +115,12 @@ k8s ns deploy 입력해 해당 deploy 네임의 pod의 컨테이너별 resource 
 insert키만 누르면 뒤에 글자 수정됨
 
 2024.03.09
-314
+공통 화면 내용 템플릿 분기
+
+
+2024.03.10
+
+
 크롤링 해보기
 쿠버네티스 구축 따라해 보기
 https://syhwang.tistory.com/43?category=1220695
