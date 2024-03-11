@@ -119,6 +119,13 @@ insert키만 누르면 뒤에 글자 수정됨
 
 
 2024.03.10
+git push error - > file 용량이 큼
+
+2024.03.11
+jdk 설치
+lombok extention 추가
+postman 설치
+ec2  instance 생성
 
 
 크롤링 해보기

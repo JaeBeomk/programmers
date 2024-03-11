@@ -15,3 +15,6 @@ Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) a
 
 3. git push시 error:RPC failed; HTTP 500 curl 22 The requested URL returned error: 500
 - 단일 파일이 50MB 을 넘어가면 에러 발생 해당 파일 삭제 후 커밋
+
+4. pip install 안될시 cmd 창에서
+- python -m pip install --upgrade pip
