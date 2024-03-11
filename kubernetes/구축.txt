@@ -1,0 +1,12 @@
+1. 가상환경 구축
+- 우분투 설치
+https://ubuntu.com/
+
+download ubuntu-22.04.4-desktop-amd64.iso
+
+- VM 설치
+- virtualbox 설치
+https://www.virtualbox.org/
+
+download 7.0버전
+
