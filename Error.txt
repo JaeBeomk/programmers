@@ -13,4 +13,5 @@ Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) a
 - DB 커넥션 종료를 WAS에서 알지 못해 발생
 - 특정 시간 마다 커넥션이 유효한지 health check 쿼리 살려 DB 커넥션 유지
 
-
+3. git push시 error:RPC failed; HTTP 500 curl 22 The requested URL returned error: 500
+- 단일 파일이 50MB 을 넘어가면 에러 발생 해당 파일 삭제 후 커밋
