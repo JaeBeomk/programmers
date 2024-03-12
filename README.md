@@ -127,7 +127,10 @@ lombok extention 추가
 postman 설치
 ec2  instance 생성
 
+2024.03.12
+POD와 APP간 통신이 안되거나 기동이 정상이지 않을경우 확인사항 정리
 
-크롤링 해보기
+
+웹크롤링 해보기
 쿠버네티스 구축 따라해 보기
 https://syhwang.tistory.com/43?category=1220695
