@@ -1,0 +1,50 @@
+pv 와 pvc를 설정할때 accesMode가 일치하지 않으면 pvc가 pending상태가 된다.
+
+POD와 app간의 통신에 문제가 생길경우 확인사항
+1. svc의 명칭은 맞는지(deployment의 env설정의 host명)
+2. svc의 selector name이 POD와 매칭이 되었는지
+3. svc의 port는 잘 열려있는지(POD에 맞게)
+4. deployment/POD의 env설정값이 맞는지 (host/id/password등등)
+5. 502 error (Bad Gateway)일 경우 svc의 nodePort 확인
+
+pod가 기동이 안될시 controlplane문제
+1. kube-system내의 이상POD events/log 확인
+2. scheduler 확인
+3. controller-manager-controlplane 확인
+- volumeMounts의 mountPath값들과 volumes의 값들과 일치하는지
+4. /etc/kubernetes/manifests dir에서 kube-system의 설정값 변경
+
+workernode 문제
+1. node 상태 확인
+2. containerd와 kubelet 기동상태 확인
+- systemctl status containerd
+- systemctl status kubelet
+
+3. 기동아닐시 로그 확인
+- journalctl -u [기동 안된 시스템] -f
+
+4. target port 확인
+-(controlplane) k get svc -o yaml
+- cat /etc/kubernetes/kubelet.conf
+
+5. ca.crt 경로 가 다를시
+- systemctl status kubelet
+- journalctl -u kubelet -f
+= "command failed" err="failed to construct kubelet dependencies: unable to load client CA file /etc/kubernetes/pki/WRONG-CA-FILE.crt: open /etc/kubernetes/pki/WRONG-CA-FILE.crt: no such file or directory"
+- 실제는 etc/kubernetes/pki/ca.crt 가 존재 
+- kubelet의 설정 정보는 /var/lib/kubelet/config.yaml 에서 가져오므로 해당 내용 수정
+
+6. kubelet 재기동
+systemctl restart kubelet
+
+network문제
+1. pod가 containercreation 상태가 지속일시 network CNI(cluster network interface)가 있는지 확인
+weave의 경우 아래 명령어로 설치 가능
+- curl -L https://github.com/weaveworks/weave/releases/download/latest_release/weave-daemonset-k8s-1.11.yaml | kubectl apply -f -
+
+2. kube-proxy pod확인
+k get pod -n kube-system
+k logs -n kube-system [kube-proxy pod]
+- kube-proxy의 config 파일 위치는
+/var/lib/kube-proxy/config.yaml
+
