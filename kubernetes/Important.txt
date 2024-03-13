@@ -1,2 +1,16 @@
-
 pv 와 pvc를 설정할때 accesMode가 일치하지 않으면 pvc가 pending상태가 된다.
+
+POD와 app간의 통신에 문제가 생길경우 확인사항
+1. svc의 명칭은 맞는지(deployment의 env설정의 host명)
+2. svc의 selector name이 POD와 매칭이 되었는지
+3. svc의 port는 잘 열려있는지(POD에 맞게)
+4. deployment/POD의 env설정값이 맞는지 (host/id/password등등)
+5. 502 error (Bad Gateway)일 경우 svc의 nodePort 확인
+
+pod가 기동이 안될시 controlplane문제
+1. kube-system내의 이상POD events/log 확인
+2. scheduler 확인
+3. controller-manager-controlplane 확인
+- volumeMounts의 mountPath값들과 volumes의 값들과 일치하는지
+4. /etc/kubernetes/manifests dir에서 kube-system의 설정값 변경
+5. 
