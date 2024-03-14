@@ -1,0 +1,35 @@
+클러스터 업그레이드 1.28 -> 1.29
+1. 쿠버네티스 apt 저장소 열어 정의
+vi /etc/apt/sources.list.d/kubernetes.list
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /
+
+2. daemonsets 노드에서 drain 후 apt 업데이트
+kubectl drain controlplane --ignore-daemonsets
+apt update
+apt-cache madison kubeadm
+
+3. 1.29버전 설치
+apt-get install kubeadm=1.29.0-1.1
+
+4. 업그레이드 진행
+kubeadm upgrade plan v1.29.0
+kubeadm upgrade apply v1.29.0
+
+5. kubelet 설치 및 재 실행 후 cordon 제거
+apt-get install kubelet=1.29.0-1.1
+systemctl daemon-reload
+systemctl restart kubelet
+kubectl uncordon controlplane
+
+6. worker node 드레인 전에 taint 확인 후 제거
+kubectl describe node controlplane | grep -i taint
+kubectl taint node controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+
+7. worker node 드레인
+kubectl drain node01 --ignore-daemonsets
+
+8. worker node 접속 후 위 작업 다시
+ssh node01
+worker node에서 1-5 번 작업 재 실행 후
+controlplane에서 cordon 해제
+

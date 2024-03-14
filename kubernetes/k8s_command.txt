@@ -75,3 +75,18 @@ hpa 증설
 $ k patch hpa -n [ns] [deploy] -p '{"spec": {"minReplicas": 10,"maxReplicas": 14}}'
 $ oc patch hpa -n [ns] [deploy] -p '{"spec": {"minReplicas": 5}}'
 
+
+json 파일의 양식 데이터를 가져올때
+cat test.txt | jpath $
+
+json 형식으로 node 명 추출
+k get no -o=jsonpath='{.items[*].metadata.name}'
+
+특정 컬럼으로 정렬
+k get pv --sort-by=.spec.capacity.storage 
+
+특정 컬럼으로 정렬 후 특정 컬럼만 추출
+k get pv --sort-by=.spec.capacity.storage -o=custom-columns=NAME:.metadata.name,CAPACITY:.spec.capacity.storage
+
+jsonpath query 필터 ?()
+ex) .contexts[?(@.context.user=='aws-user')].name
