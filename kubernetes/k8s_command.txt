@@ -90,3 +90,19 @@ k get pv --sort-by=.spec.capacity.storage -o=custom-columns=NAME:.metadata.name,
 
 jsonpath query 필터 ?()
 ex) .contexts[?(@.context.user=='aws-user')].name
+
+custom-columns 명령어
+kubectl -n admin2406 get deployment -o custom-columns=DEPLOYMENT:.metadata.name,CONTAINER_IMAGE:.spec.template.spec.containers[].image,READY_REPLICAS:.status.readyReplicas,NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/admin2406_data
+
+etcd-snapshot 백억하기
+export ETCDCTL_API=3
+etcdctl snapshot save --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key --endpoints=127.0.0.1:2379 etcd-backup.db
+
+POD 생성시 라벨
+kubectl run messaging --image=redis:alpine -l tier=msg
+
+pod 에 svc expose 하기
+kubectl expose pod messaging --port=6379 --name messaging-service
+
+static POD 생성
+kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -oyaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
