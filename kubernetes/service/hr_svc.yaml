@@ -1,0 +1,17 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: hr-web-app-service
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: hr-web-app
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30082
+  endpoints:
+  - addresses:
+      - "10.244.0.8"
+  - addresses:
+      - "10.244.0.7"

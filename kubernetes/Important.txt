@@ -1,2 +1,0 @@
-
-pv 와 pvc를 설정할때 accesMode가 일치하지 않으면 pvc가 pending상태가 된다.
