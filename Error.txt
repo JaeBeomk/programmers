@@ -18,3 +18,12 @@ Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) a
 
 4. pip install 안될시 cmd 창에서
 - python -m pip install --upgrade pip
+
+5. Could not parse multipart servlet request; nested exception is java.lang.IllegalStateException: Unable to process parts as no multi-part configuration has been provided 
+- 스프링에서 파일업로드와 관련된 코드를 넣을때 다음과 같은 에러
+- Filter의 ServletRequest에서 그 페이지의 값들을 받아오지 못한다.
+- Tomcat 설정단에 context.xml에 다음과 같은 구문을 추가
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Context allowCasualMultipartParsing="true" path="/">
+        <Resources cachingAllowed="true" cacheMaxSize="100000" />
+    </Context>
