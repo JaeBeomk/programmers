@@ -3,6 +3,9 @@
 
 1. 필수 - 패키지 설치
 pip install beautifulsoup4 lxml requests
+pip install requests
+pip install pandas
+pip install pyOpenSSL
 
 2. 국제 규정을 어기지 않기위해 robots.txt 이용하기
 예를들어 네이버 www.naver.com/robots.txt

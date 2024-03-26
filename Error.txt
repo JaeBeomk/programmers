@@ -27,3 +27,7 @@ Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) a
     <Context allowCasualMultipartParsing="true" path="/">
         <Resources cachingAllowed="true" cacheMaxSize="100000" />
     </Context>
+
+6. 크롤링시 SSLError 발생 HTTPSConnectionPool(host='finance.naver.com', port=443)
+- resp=requests.get('https://finance.naver.com/') ===> 아래 코드 처럼 verify=False 옵션 추가
+- resp=requests.get('https://finance.naver.com/',verify=False)
