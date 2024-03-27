@@ -90,6 +90,7 @@ k get pv --sort-by=.spec.capacity.storage -o=custom-columns=NAME:.metadata.name,
 
 jsonpath query 필터 ?()
 ex) .contexts[?(@.context.user=='aws-user')].name
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}'
 
 custom-columns 명령어
 kubectl -n admin2406 get deployment -o custom-columns=DEPLOYMENT:.metadata.name,CONTAINER_IMAGE:.spec.template.spec.containers[].image,READY_REPLICAS:.status.readyReplicas,NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/admin2406_data
@@ -106,3 +107,10 @@ kubectl expose pod messaging --port=6379 --name messaging-service
 
 static POD 생성
 kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -oyaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+
+user 생성하고 user 한테 role 주기
+k certificate approve john-developer
+k create role developer --resource=pods --verb=create,list,get,update,delete --namespace=development
+k create rolebinding developer-role-binding --role=developer --user=john --namespace=development
+k auth can-i update pods --as=john --namespace=development
+
