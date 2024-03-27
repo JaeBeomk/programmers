@@ -7,6 +7,29 @@ download ubuntu-22.04.4-desktop-amd64.iso
 - VM 설치
 - virtualbox 설치
 https://www.virtualbox.org/
-
 download 7.0버전
+
+2. NAT설정 == 도구 =>> NAT네트워크 => 생성 후 포트 포워딩
+master = 10.100.0.104:104
+
+3. ubuntu 접속 후 오른쪽 상단 -> 설정 -> 네트워크
+IPV4 변경 => static IP 설정
+
+4. hostname,hosts 변경
+cat /etc/hostname
+- > master.example.com
+
+cat /etc/hosts
+- > dns / IP 
+
+5. ssh서버 설치
+sudo apt-get update
+sudo apt-get install -y openssh-server curl vim tree
+
+6. 서버 시작
+systemctl start ssh
+systemctl status ssh
+
+7. Xshell 접속 후
+127.0.0.1:104 접속 후 확인
 
