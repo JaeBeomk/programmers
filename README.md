@@ -1,5 +1,5 @@
 # programmers Study
-# someday practice algorithm for python
+# practice anything
 list 배열의 합은 sum 함수로 합쳐진다. 
 for 반복문을 배열에서 사용시 range(len())는 길이만큼 in은 배열안의 인덱스를 반복이다 
 
@@ -136,7 +136,9 @@ CKA 취득
 2024.03.26
 웹크롤링 연습
 
-
+2024.03.27
+javascript를 다시 해보자
+https://nodejs.org/en/download/ 설치부터
 
 쿠버네티스 구축 따라해 보기
 https://syhwang.tistory.com/43?category=1220695

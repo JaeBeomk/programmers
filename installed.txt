@@ -1,4 +1,5 @@
-python
+python설치
+https://www.python.org/
 
 pip install django
 pip install pillow
@@ -12,3 +13,5 @@ lombok extention 설치
 포스트맨 설치 - http 요청을 전송하고 응답을 보여주며 기본적 CRUD 테스트 도구
 https://www.postman.com/downloads/
 
+nodejs 설치
+https://nodejs.org/en/download/
