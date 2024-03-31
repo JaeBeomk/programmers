@@ -140,5 +140,14 @@ CKA 취득
 javascript를 다시 해보자
 https://nodejs.org/en/download/ 설치부터
 
-쿠버네티스 구축 따라해 보기
-https://syhwang.tistory.com/43?category=1220695
+2024.03.29
+미세먼지가 심한 오늘 api로 미세먼지를 가져오고 싶다...
+공공데이터 포털 = https://www.data.go.kr/ 
+
+2024.03.31
+ec2 pem키 연결 확인
+https://launchpad.net/ubuntu/+ppas => apt 저장소 없는 프로그램 찾기
+todo/guestbook 프로젝트 삭제
+-> 새로 만들어볼 예정
+
+
