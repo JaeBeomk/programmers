@@ -31,3 +31,8 @@ Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) a
 6. 크롤링시 SSLError 발생 HTTPSConnectionPool(host='finance.naver.com', port=443)
 - resp=requests.get('https://finance.naver.com/') ===> 아래 코드 처럼 verify=False 옵션 추가
 - resp=requests.get('https://finance.naver.com/',verify=False)
+
+7. django HttpResponseRedirect(reversed('index')) 
+- quote_from_bytes() expected bytes 에러 발생
+- 인수는 문자열이여지만 코드대신 정수 전달 경우도 있다. 
+- settings.py에 구문 추가 APPEND_SLASH = False

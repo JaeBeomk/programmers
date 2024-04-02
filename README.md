@@ -151,7 +151,7 @@ todo/guestbook 프로젝트 삭제
 -> 새로 만들어볼 예정
 
 2024.04.02
-config 프로젝트 생성
-guestbook app 생성
-superuser 생성
+방명록 프로젝트 시작
+
+
 
