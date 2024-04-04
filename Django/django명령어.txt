@@ -26,3 +26,4 @@ python manage.py shell (query set)사용방법
 접속 후 해당 모델 import
 from [].models.py import []
 [].objects.all()
+

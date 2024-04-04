@@ -153,5 +153,7 @@ todo/guestbook 프로젝트 삭제
 2024.04.02
 방명록 프로젝트 시작
 
+2024.04.03
+sqlite3의 sequence 보장을 해결하기 위한 queryset의 last pk값을 가져와 1더하기
 
 

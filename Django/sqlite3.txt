@@ -1,0 +1,4 @@
+# sqlite3
+sqlite3에는 truncate문이 없어서 아래 구문으로 sequence 초기화 해줘야한다...
+DELETE FROM TABLE_NAME
+UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{TABLE_NAME}';

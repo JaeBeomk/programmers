@@ -13,4 +13,6 @@
 - config/settings.py에 static폴더 연동
 - list.html 생성 후 config/views.py index변경
 - post.html 생성 후 config/views.py 연동 및 config/urls.py 연동
-- 
+- 동작 확인
+- sequence 방어문 생성 추후 다시 생성 예정(guestbook.views.py)
+
