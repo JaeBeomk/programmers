@@ -54,19 +54,6 @@ print("데이터 모으기 끝!")
 #데이터 합치기
 
 
-# DATA = pd.concat(
-#     [
-#         pd.DataFrame(datetimeList),
-#         pd.DataFrame(citynameList),
-#         pd.DataFrame(so2valueList),
-#         pd.DataFrame(covalueList),
-#         pd.DataFrame(o3valueList),
-#         pd.DataFrame(no2valueList),
-#         pd.DataFrame(pm10valueList),
-#         pd.DataFrame(pm25valueList)
-#     ]
-#     ,axis=1) 
-
 # 명칭 지정 후 데이터 적재
 DATA= pd.DataFrame()
 DATA['time']=datetimeList
