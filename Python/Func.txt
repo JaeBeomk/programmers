@@ -1,9 +1,0 @@
-isalpha: 알파벳인지
-    a='1q2w3e'
-    a.alpha() # FALSE
-isdigit: 숫자인지
-    a='1234'
-    a.isdigit() # TRUE
-isalnum: 알파벳 or 숫자인지
-    a='1234'
-    a.isalnum() # TRUE

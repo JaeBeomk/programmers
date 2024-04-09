@@ -157,4 +157,6 @@ todo/guestbook 프로젝트 삭제
 sqlite3의 sequence 보장을 해결하기 위한 queryset의 last pk값을 가져와 1더하기
 
 2024.04.09
-
+java - 삭제
+toy 프로젝트 GUI 숫자야구
+나머지는 나중에...
