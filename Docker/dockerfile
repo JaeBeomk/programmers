@@ -1,0 +1,15 @@
+# 배포용 도커파일
+# dockerfile image_build.py 명령어로 배포
+
+FROM python:3.7
+
+RUN mkdir /echo
+COPY image_build.py /echo
+
+CMD ["python", "/echo/image_build.py"]
+
+
+# 배포 후 테스트
+# sudo docker build -t ehco_test .
+# sudo docker images
+# sudo docker run -t -p 12345:12345 --name et --rm echo_test
