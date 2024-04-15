@@ -159,4 +159,11 @@ sqlite3의 sequence 보장을 해결하기 위한 queryset의 last pk값을 가�
 2024.04.09
 java - 삭제
 toy 프로젝트 GUI 숫자야구
-나머지는 나중에...
+
+2024.04.14
+docker 맛보기
+
+2024.04.15
+정처기 start
+숫자야구 command 버전 완성
+while True: 는 python2 에서는 True가 정의가 되어있지않아 1로 하는게 더 성능이 빠르다.

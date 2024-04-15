@@ -1,15 +1,12 @@
-# 숫자야구
+# 숫자야구 만들기
 # 3개의 숫자를 랜덤하게 만든다. 
 # 자리와 값이 일치하면 strike
 # 값이 존재하면 ball
 # 숫자는 중복하지 않고 자리와 숫자를 모두 맞추면 strike out
 
-# random 모듈에서 randint만 사용
 from random import randint
-# GUI로 구축
-import tkinter as tk
 
-# 숫자야구 정답 3자리
+# 랜덤 숫자 만들기
 def base_num():
     num=[] # ball count 담을 배열
     i=0
@@ -21,24 +18,57 @@ def base_num():
             i+=1
     return num
 
+# 스코어 확인
+def score(ball,res):
+    S_cnt=0 # strike
+    B_cnt=0 # ball
+    i=0 # 숫자
+    while i<len(ball):
+        if ball[i]==res[i]:
+            S_cnt+=1
+            i+=1
+        elif ball[i] in res:
+            B_cnt+=1
+            i+=1
+        else:
+            i+=1
+    return S_cnt,B_cnt
+
+# 실제 플레이
+def playBall():
+    print("숫자 3개 입력하세요!")
+    i=0 # 입력 숫자
+    play=[]
+    while i < 3:
+        num=int(input("{}번째 숫자 입력:".format(i+1)))
+        if num > 9:
+            print("범위는 0~9 입니다.")
+            continue
+        if num in play:
+            print("중복되는 숫자입니다.")
+        else:
+            play.append(num)
+            i+=1
+    return play
+
+# 시작
+QUE=base_num() # 정답
+
 # 정답 확인
-print(base_num())
+# print(QUE) 
 
-# window 생성
-main=tk.Tk()
-main.title("숫자야구")
+challenge=0 # 도전 횟수
 
-# 수식 입력용 창
-expression=tk.Label(main,text='입력',height=3,width=20,font=('',20),bg='grey')
-expression.grid(row=0,column=0,columnspan=4,sticky="nsew")
+while 1: # python3에서는 while True 도 성능이 같음
+    PLAY=playBall() # 플레이
+    S_cnt,B_cnt=score(QUE,PLAY) 
+    print("{} S {} B".format(S_cnt,B_cnt))
 
-# 정답 입력용 창
+    # 정답시 멈춤
+    if S_cnt==3:
+        challenge+=1
+        break
+    else:
+        challenge+=1
 
-# 정답 입력 후 버튼 
-
-# 정답 확인 창
-result_label=tk.Label(main,text="?정답?",height=2,width=20,font=('',20),bg="grey")
-result_label.grid(row=1,column=0,columnspan=4,sticky="nsew")
-
-# 작동
-main.mainloop()
+print("{}번 만에 맞추셨습니다.".format(challenge))
