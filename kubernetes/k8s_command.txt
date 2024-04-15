@@ -114,3 +114,6 @@ k create role developer --resource=pods --verb=create,list,get,update,delete --n
 k create rolebinding developer-role-binding --role=developer --user=john --namespace=development
 k auth can-i update pods --as=john --namespace=development
 
+pod생성 후 노출
+k create deploy tc --image=nginx --replicas=3
+k expose deploy tc --type=LoadBalancer --port=80 --target-port=8080

@@ -33,3 +33,5 @@ systemctl status ssh
 7. Xshell 접속 후
 127.0.0.1:104 접속 후 확인
 
+
+
