@@ -10,7 +10,7 @@ from random import randint
 import tkinter as tk
 
 # 이미 만든거 쓰자?
-from baseNum import base_num,score,playBall
+# from baseNum import base_num,score,playBall
 
 
 
@@ -18,17 +18,12 @@ from baseNum import base_num,score,playBall
 main=tk.Tk()
 main.title("숫자야구")
 
-# 수식 입력용 창
-expression=tk.Label(main,text='입력',height=3,width=20,font=('',20),bg='grey')
-expression.grid(row=0,column=0,columnspan=4,sticky="nsew")
+# 정답입력용 창
+first=tk.Label(main,text="123",width=10,height=5,fg="red",relief="solid")
+second=tk.Label(main,text="123",width=10,height=5,fg="blue",relief="solid")
 
-# 정답 입력용 창
-
-# 정답 입력 후 버튼 
-
-# 정답 확인 창
-result_label=tk.Label(main,text="?정답?",height=2,width=20,font=('',20),bg="grey")
-result_label.grid(row=1,column=0,columnspan=4,sticky="nsew")
-
+# label 표시
+first.pack()
+second.pack()
 # 작동
 main.mainloop()
