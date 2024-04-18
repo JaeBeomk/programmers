@@ -4,68 +4,7 @@
     // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "java",
-            "name": "Solution",
-            "request": "launch",
-            "mainClass": "algorithm.Java.src.ATM.Solution",
-            "projectName": "programmers_104c8b35"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "src.App",
-            "projectName": "programmers_525f1482"
-        },
-        {
-            "type": "java",
-            "name": "hello",
-            "request": "launch",
-            "mainClass": "chap01.hello",
-            "projectName": "chap01"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "Lv0.src.App",
-            "projectName": "programmers_525f1482"
-        },
-        {
-            "type": "java",
-            "name": "hello",
-            "request": "launch",
-            "mainClass": "chap01.hello",
-            "projectName": "programmers_104c8b35"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "programmers_104c8b35"
-        },
-        {
-            "type": "java",
-            "name": "hello",
-            "request": "launch",
-            "mainClass": "Java.hello",
-            "projectName": "programmers_104c8b35"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "com.connection.Main",
-            "projectName": "classes"
-        },
+        
         {
             "name": "Python: 현재 파일",
             "type": "python",
