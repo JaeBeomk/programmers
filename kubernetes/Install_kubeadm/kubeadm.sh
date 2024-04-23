@@ -42,10 +42,13 @@ ifconfig eth0
 IP_ADDR=$(ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 kubeadm init --apiserver-cert-extra-sans=controlplane --apiserver-advertise-address $IP_ADDR --pod-network-cidr=10.244.0.0/16
 
-# config 설정
+# config 설정 (master node only)
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# sudo kubectl 명령어 사용! 만약 sudo 없이 사용하고 싶다면
+export KUBECONFIG=$HOME/.kube/config
 
 # root user 일때
 export KUBECONFIG=/etc/kubernetes/admin.conf

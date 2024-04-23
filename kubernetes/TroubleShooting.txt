@@ -48,3 +48,8 @@ k logs -n kube-system [kube-proxy pod]
 - kube-proxy의 config 파일 위치는
 /var/lib/kube-proxy/config.yaml
 
+# master node에서 sudo kubeadm init 명령어 사용시 초기화가 진행되지 않고 아래 에러 발생
+[ERROR CRI]: container runtime is not running: 
+sudo sed -i 's/^disabled_plugins \=/\#disabled_plugins \=/g' /etc/containerd/config.toml
+sudo systemctl restart containerd
+sudo kubeadm init

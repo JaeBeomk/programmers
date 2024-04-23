@@ -171,3 +171,6 @@ while True: 는 python2 에서는 True가 정의가 되어있지않아 1로 하�
 2024.04.18
 gcp-vm-kubeadm install
 106
+
+2024.04.23
+gcp master node kubeadm install and Node network connection
