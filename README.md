@@ -170,7 +170,16 @@ while True: 는 python2 에서는 True가 정의가 되어있지않아 1로 하�
 
 2024.04.18
 gcp-vm-kubeadm install
-106
 
 2024.04.23
 gcp master node kubeadm install and Node network connection
+
+2024.04.27
+정처기 ...out
+
+2024.04.29
+폴더 구조 변경 
+gcp add-on설치
+cluster 재 구축 집가서 함더...
+externer-IP가 보이지 않는다...
+

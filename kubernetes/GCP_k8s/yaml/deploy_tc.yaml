@@ -1,0 +1,26 @@
+# k create deployment tc --image =consol/tomcat-7.0 --replicas 5  --dry-run=client -oyaml > tc.yaml
+# 생성 후 expose로 노출 k expose deployment tc --type NodePort --port 80 --target-port 8080
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: tc
+  name: tc
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: tc
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tc
+    spec:
+      containers:
+      - image: consol/tomcat-7.0
+        name: tomcat-7-0-s5xx6
+        resources: {}
+status: {}

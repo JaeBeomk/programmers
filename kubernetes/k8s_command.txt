@@ -117,3 +117,6 @@ k auth can-i update pods --as=john --namespace=development
 pod생성 후 노출
 k create deploy tc --image=nginx --replicas=3
 k expose deploy tc --type=LoadBalancer --port=80 --target-port=8080
+
+pod port-forward
+k port-forward [pod명] port:port
