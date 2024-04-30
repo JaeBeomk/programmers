@@ -183,3 +183,9 @@ gcp add-on설치
 cluster 재 구축 집가서 함더...
 externer-IP가 보이지 않는다...
 
+2024.04.30
+external-IP 해결 vpc 생성
+VM 외부 통신 확인...
+
+
+
