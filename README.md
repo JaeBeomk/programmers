@@ -1,5 +1,5 @@
 # programmers Study
-# someday practice algorithm for python
+# practice anything
 list 배열의 합은 sum 함수로 합쳐진다. 
 for 반복문을 배열에서 사용시 range(len())는 길이만큼 in은 배열안의 인덱스를 반복이다 
 
@@ -130,7 +130,62 @@ ec2  instance 생성
 2024.03.12
 POD와 APP간 통신이 안되거나 기동이 정상이지 않을경우 확인사항 정리
 
+2024.03.24
+CKA 취득
 
-웹크롤링 해보기
-쿠버네티스 구축 따라해 보기
-https://syhwang.tistory.com/43?category=1220695
+2024.03.26
+웹크롤링 연습
+
+2024.03.27
+javascript를 다시 해보자
+https://nodejs.org/en/download/ 설치부터
+
+2024.03.29
+미세먼지가 심한 오늘 api로 미세먼지를 가져오고 싶다...
+공공데이터 포털 = https://www.data.go.kr/ 
+
+2024.03.31
+ec2 pem키 연결 확인
+https://launchpad.net/ubuntu/+ppas => apt 저장소 없는 프로그램 찾기
+todo/guestbook 프로젝트 삭제
+-> 새로 만들어볼 예정
+
+2024.04.02
+방명록 프로젝트 시작
+
+2024.04.03
+sqlite3의 sequence 보장을 해결하기 위한 queryset의 last pk값을 가져와 1더하기
+
+2024.04.09
+java - 삭제
+toy 프로젝트 GUI 숫자야구
+
+2024.04.14
+docker 맛보기
+
+2024.04.15
+정처기 start
+숫자야구 command 버전 완성
+while True: 는 python2 에서는 True가 정의가 되어있지않아 1로 하는게 더 성능이 빠르다.
+
+2024.04.18
+gcp-vm-kubeadm install
+
+2024.04.23
+gcp master node kubeadm install and Node network connection
+
+2024.04.27
+정처기 ...out
+
+2024.04.29
+폴더 구조 변경 
+gcp add-on설치
+cluster 재 구축 집가서 함더...
+externer-IP가 보이지 않는다...
+
+2024.04.30
+external-IP 해결 vpc 생성
+VM 외부 통신 확인...
+
+
+

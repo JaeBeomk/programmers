@@ -1,0 +1,5 @@
+ERROR: (gcloud.compute.scp) Could not fetch resource:
+ - Insufficient Permission: Request had insufficient authentication scopes.
+위와 같은 에러는 인증이 안되었다는 소리로 console에서 다시 로그인 해줘야한다.=> gcloud auth login
+
+VM 인스턴스 생성시 HTTP/HTTPS 트래픽 허용안해주면 막나?

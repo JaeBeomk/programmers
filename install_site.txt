@@ -1,0 +1,15 @@
+python설치
+https://www.python.org/
+
+# python 설치 후 django 설치해야함
+pip install django
+
+
+Java 
+https://jdk.java.net/archive/
+
+포스트맨 설치 - http 요청을 전송하고 응답을 보여주며 기본적 CRUD 테스트 도구
+https://www.postman.com/downloads/
+
+nodejs 설치
+https://nodejs.org/en/download/
