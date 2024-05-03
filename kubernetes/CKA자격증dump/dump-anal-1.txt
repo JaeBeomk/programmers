@@ -48,7 +48,7 @@ A.
 4>  ETCD Backup & Restore
 Q.  First, create a snapshot of the existing etcd instance running at https://127.0.0.1:2379, saving the snapshot to /var/lib/backup/etcd-snapshot.db
     Next, restore an existing previous snapshot located at /var/lib/backup/etcd-snapshot-previous.db
-A.  <Key 1.  snapshot restore 시  endpoints 기재  ,   Key 2.  snapshot restore 후  디렉토리 권한 ㅗ학인>
+A.  <Key 1.  snapshot restore 시  endpoints 기재  ,   Key 2.  snapshot restore 후  디렉토리 권한 학인>
     1. 백업  명령어
 	→ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/opt/KUIN00601/ca.crt --cert=/opt/KUIN00601/etcd-client.crt --key=/opt/KUIN00601/etcd-client.key snapshot save /var/lib/backup/etcd-snapshot.db
 	2. 리스토어  복구  명령어

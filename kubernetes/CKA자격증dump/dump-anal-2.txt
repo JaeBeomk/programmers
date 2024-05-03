@@ -117,8 +117,8 @@ A.
 
 16> PVC
 Q.  Create a new PersistentVolumeClaim:
-	* Name: pv-volume_
-	* Class: csi-hostpath-sc_
+	* Name: pv-volume
+	* Class: csi-hostpath-sc
 	* Capacity: 10Mi
 	Create a new Pod which mounts file the PersistentVolumeClaim as a volume:
 	* Name: web-server
@@ -128,7 +128,7 @@ Q.  Create a new PersistentVolumeClaim:
 	Finally, using kubectl edit or kubectl patch expand the PersistentVolumeClaim to a capacity 70Mi and record that change.
 	
 A. 
-    1. pv생성
+    1. pvc생성
 -----------
 apiVersion: v1
 kind: PersistentVolumeClaim 
@@ -187,9 +187,9 @@ spec:
       - path: /hello 
 	    pathType: Prefix 
 		backend:
-          service: 
+        service: 
 		    name: hello 
 		  port:
-            number: 5678
+        number: 5678
 	
 	
