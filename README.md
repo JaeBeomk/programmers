@@ -187,5 +187,11 @@ externer-IP가 보이지 않는다...
 external-IP 해결 vpc 생성
 VM 외부 통신 확인...
 
+2024.05.07
+rc(ReplicationController) 는 label selector에 따라 동작한다.
+label 변경시 pod를 새로 생성하고 label 변경된 pod는 동작하지만 label selector로 연결된 서비스는 불가하다...
+164P 부터 다시
+
+
 
 
