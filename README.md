@@ -190,7 +190,11 @@ VM 외부 통신 확인...
 2024.05.07
 rc(ReplicationController) 는 label selector에 따라 동작한다.
 label 변경시 pod를 새로 생성하고 label 변경된 pod는 동작하지만 label selector로 연결된 서비스는 불가하다...
-164P 부터 다시
+
+2024.05.13
+yaml 파일 작성시 
+(---)을 사용해 붙혀서 한번에 관리 가능
+198
 
 
 
