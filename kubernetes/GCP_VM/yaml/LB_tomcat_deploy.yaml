@@ -1,0 +1,30 @@
+# consol/tomcat-7.0 이미지를 사용해 톰캣 디플로이먼트 배포하기
+# tomcat을 노드포트로 서비스하기(30003번 포트 사용)
+# tomcat을 로드밸런스로 서비스하기(80번 포트 사용)
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: tc
+  name: tc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: tc
+    spec:
+      containers:
+      - image: consol/tomcat-7.0
+        name: tomcat-7-0-8kk5h
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}
