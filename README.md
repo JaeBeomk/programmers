@@ -205,7 +205,12 @@ yaml파일의 형식중 ports 와 같은 복수 형태는
 2024.05.17
 LB_tomcat_deploy.yaml
 파일 작성 후 노드포트 서비스
-225
+
+2024.05.20
+GKE로 클러스터 전환 -> LoadBalancer svc와 NodePort를 오픈 확인
+
+
+
 
 
 

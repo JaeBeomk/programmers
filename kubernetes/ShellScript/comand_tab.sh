@@ -2,6 +2,7 @@
 
 # k8s tab키 사용시 자동완성(현재 사용자만)
 source <(kubectl completion bash)
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 # 시스템 전체에 적용
