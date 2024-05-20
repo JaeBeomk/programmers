@@ -9,5 +9,5 @@ gcloud compute firewall-rules delete $NAME
 ex) deploy -> svc -> port open
 k create deployment jenkins --image=jenkins/jenkins:lts-jdk17 --port=8080
 k expose deployment jenkins --type=NodePort --port=80 --target-port=8080
-gcloud compute firewall-rules create test-node-port  --allow tcp:31518
+gcloud compute firewall-rules create tc-lb-port  --allow tcp:31634
 
