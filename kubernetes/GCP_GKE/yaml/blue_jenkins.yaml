@@ -1,0 +1,56 @@
+# k create namespace blue
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: blue
+spec: {}
+status: {}
+# k create deployment pod-jenkins --image=jenkins --namespace=blue --port=8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pod-jenkins
+  name: pod-jenkins
+  namespace: blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-jenkins
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pod-jenkins
+    spec:
+      containers:
+      - image: jenkins
+        name: jenkins
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}
+#k expose deploy pod-jenkins --port 80 --target-port 8080 --name=srv-jenkins --namespace=blue 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pod-jenkins
+  name: srv-jenkins
+  namespace: blue
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: pod-jenkins
+status:
+  loadBalancer: {}
