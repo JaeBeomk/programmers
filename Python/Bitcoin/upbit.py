@@ -71,4 +71,5 @@ while True:
         print("대기...")
 
     time.sleep(60)  # 1분 대기
+    print(get_balance("KRW"))
     
