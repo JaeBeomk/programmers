@@ -209,6 +209,10 @@ LB_tomcat_deploy.yaml
 2024.05.20
 GKE로 클러스터 전환 -> LoadBalancer svc와 NodePort를 오픈 확인
 
+2024.05.28
+python 으로 bitcoin열심히 매수해보자
+현재 IP만 가능
+
 
 
 
