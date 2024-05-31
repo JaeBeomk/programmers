@@ -213,6 +213,8 @@ GKE로 클러스터 전환 -> LoadBalancer svc와 NodePort를 오픈 확인
 python 으로 bitcoin열심히 매수해보자
 현재 IP만 가능
 
+2024.05.31
+gce 영구 스토리지는 명령어 혹은 콘솔로 생성 후 볼륨만 별도 선언 불가로 POD 생성해 volume 구성
 
 
 
