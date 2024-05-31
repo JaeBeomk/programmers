@@ -1,0 +1,8 @@
+ReadinessProbe
+Pod의 생명주기중 Pending 상태에서의 동작, 서비스 요청에 응답가능한지 확인
+Service와 연결된 Pod를 확인하여 Readiness Probe에 대해 응답이 없거나 실해 응답을 보낸다면 해당 Pod를 사용불가능한 상태라고 판단하여 서비스 목록에서 제외(App구동 순간에 트래픽이 흐르지 않게)
+
+LivenessProbe
+Pod의 생명주기중 Running 상태에서의 동작
+컨테이너가 정상 실행중인지 확인(LivenessProbe를 설정하지 않으면 기본 상태값은 Success)
+컨테이너의 상태를 주기적으로 체크하여, 응답이 없다면 컨테이너를 자동으로 재시작한다
