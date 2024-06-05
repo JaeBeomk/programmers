@@ -224,7 +224,15 @@ pod의 emptydir 부분을 nfs로 변경해 폴더 연동
 
 GCE compute engine의 스토리지 디스크는 k8s공식 docs에는 서비스 제공을 중지하여서 pv/pvc/pod순으로 mount 해줘야 한다.
 
-273
+2024.06.05
+gcp - new project(end-20240715)
+vm 설치 후 k8s 세팅 완료
+ssh 연동 완료
+kubernetes - 자동완성
+
+
+
+
 
 
 
