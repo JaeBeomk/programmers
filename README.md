@@ -234,6 +234,7 @@ kubernetes - 자동완성
 스티커메모가 연동 실패로 인해 데이터 유실...?
 백업 데이터 확인 필요
 sticy note -> onenote 이전 예정
+onenote 내용 정리
 
 
 273
