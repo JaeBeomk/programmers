@@ -235,7 +235,11 @@ kubernetes - 자동완성
 백업 데이터 확인 필요
 sticy note -> onenote 이전 예정
 onenote 내용 정리
-
+office365종료로 일기장 변경...
+프로젝트 유저 추가
+그룹으로 관리 예정
+github 유저추가
+discord 추가
 
 273
 
