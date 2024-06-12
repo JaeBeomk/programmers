@@ -230,6 +230,10 @@ vm 설치 후 k8s 세팅 완료
 ssh 연동 완료
 kubernetes - 자동완성
 
+2024.06.06
+django project 생성 후 git clone
+image 빌드 후 pod 생성
+
 
 
 
