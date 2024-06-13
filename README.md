@@ -234,10 +234,6 @@ kubernetes - 자동완성
 django project 생성 후 git clone
 image 빌드 후 pod 생성
 
-2024.06.06
-django project 생성 후 git clone
-image 빌드 후 pod 생성
-
 
 2024.06.11
 스티커메모가 연동 실패로 인해 데이터 유실...?
@@ -249,6 +245,11 @@ office365종료로 일기장 변경...
 그룹으로 관리 예정
 github 유저추가
 discord 추가
+
+2024.06.12
+mariadb 연동하는 deploy 추가
+그런데 pod 삭제시 해당 db의 내용이 삭제되어서
+statefulset으로 기동예정
 
 273
 
