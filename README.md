@@ -251,6 +251,16 @@ mariadb 연동하는 deploy 추가
 그런데 pod 삭제시 해당 db의 내용이 삭제되어서
 statefulset으로 기동예정
 
+2024.06.13
+statefulset으로 기동완료
+작업 후 ns를 생성해 서비스 단위 구분예정
+접근 규칙 role 생성예정
+DB user1~3 생성 요청
+생성한 user 권한 부여 후 작업
+
+2024.06.14
+
+
 273
 
 
