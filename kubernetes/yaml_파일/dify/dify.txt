@@ -1,0 +1,9 @@
+### dify 설치 방안
+oc apply -f https://raw.githubusercontent.com/Winson-030/dify-kubernetes/main/dify-deployment.yaml
+
+###
+- volume이 hostpath로 되어있어 pod가 권한문제로 정상기동되지 않았음
+- pv / pvc를 생성해 직접 volume 을 생성 해주고 security context에 컨테이너 내부의 root 권한을 허용해줌
+- 각 서비스계정에 role을 추가해줌
+- ingress를 오브젝트를 이용해 라우트를 생성
+###
